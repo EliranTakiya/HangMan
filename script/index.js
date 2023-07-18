@@ -193,7 +193,7 @@ function render() {
 
 function checkKEY(){
    const a=document.getElementById('a');
-a.addEventListener('keyUp',function(e){
+a.addEventListener('click',function(e){
 if(hangMan.status !== 'playing') return;
 
     const guess=e.target.innerHTML;
