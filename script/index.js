@@ -108,7 +108,7 @@ class HangMan {
             const image = document.getElementById('man1');
             let source = image.src;
             console.log(source)//http://localhost:3000/asset/hang0.png
-            image.src = `/HangMan/asset/hang${this.count}.png`;
+            image.src = `/asset/hang${this.count}.png`;
             this.count++;
             this.guessed.push(guess)
             return
@@ -189,10 +189,123 @@ function render() {
 
 }
 
+
+
+
+
+const a=document.getElementById('a');
+a.addEventListener('click',function(e){
+if(hangMan.status !== 'playing') return;
+
+    const guess=e.target.innerHTML;
+    hangMan.makeGuess(guess)
+hangMan.changeMan(guess)
+render();
+})
+const b=document.getElementById('b');
+b.addEventListener('click',function(e){
+if(hangMan.status !== 'playing') return;
+
+    const guess=e.target.innerHTML;
+    hangMan.makeGuess(guess)
+hangMan.changeMan(guess)
+render();
+})
+const c=document.getElementById('c');
+c.addEventListener('click',function(e){
+if(hangMan.status !== 'playing') return;
+
+    const guess=e.target.innerHTML;
+    hangMan.makeGuess(guess)
+hangMan.changeMan(guess)
+render();
+})
+const d=document.getElementById('d');
+d.addEventListener('click',function(e){
+if(hangMan.status !== 'playing') return;
+
+    const guess=e.target.innerHTML;
+    hangMan.makeGuess(guess)
+hangMan.changeMan(guess)
+render();
+})
+const e=document.getElementById('e');
+e.addEventListener('click',function(e){
+if(hangMan.status !== 'playing') return;
+
+    const guess=e.target.innerHTML;
+    hangMan.makeGuess(guess)
+hangMan.changeMan(guess)
+render();
+})
+const f=document.getElementById('f');
+f.addEventListener('click',function(e){
+if(hangMan.status !== 'playing') return;
+
+    const guess=e.target.innerHTML;
+    hangMan.makeGuess(guess)
+hangMan.changeMan(guess)
+render();
+})
+const g=document.getElementById('g');
+g.addEventListener('click',function(e){
+if(hangMan.status !== 'playing') return;
+
+    const guess=e.target.innerHTML;
+    hangMan.makeGuess(guess)
+hangMan.changeMan(guess)
+render();
+})
+const h=document.getElementById('h');
+h.addEventListener('click',function(e){
+if(hangMan.status !== 'playing') return;
+
+    const guess=e.target.innerHTML;
+    hangMan.makeGuess(guess)
+hangMan.changeMan(guess)
+render();
+})
+const i=document.getElementById('i');
+i.addEventListener('click',function(e){
+if(hangMan.status !== 'playing') return;
+
+    const guess=e.target.innerHTML;
+    hangMan.makeGuess(guess)
+hangMan.changeMan(guess)
+render();
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 window.addEventListener('keypress', function ({ key }) {
     if (hangMan.status !== 'playing') return;
     //הכנס ל guess
     const guess = key;
+    console.log(key);
     hangMan.makeGuess(guess);
     hangMan.changeMan(guess);
     render();
