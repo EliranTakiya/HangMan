@@ -143,6 +143,10 @@ class HangMan {
             return `nice try! the word was ${this.#word}`
         }
         else {
+            const image = document.getElementById('man1');
+            let source = image.src;
+            console.log(source)//http://localhost:3000/asset/hang0.png
+            image.src = `/asset/nice-job.jpg`;
             return `great work! you guessed the word: ${this.#foundWord}`
         }
     }
