@@ -273,35 +273,162 @@ if(hangMan.status !== 'playing') return;
 hangMan.changeMan(guess)
 render();
 }) 
+const j=document.getElementById('j');
+j.addEventListener('click',function(e){
+if(hangMan.status !== 'playing') return;
+
+    const guess=e.target.innerHTML;
+    hangMan.makeGuess(guess)
+hangMan.changeMan(guess)
+render();
+}) 
+const k=document.getElementById('k');
+k.addEventListener('click',function(e){
+if(hangMan.status !== 'playing') return;
+
+    const guess=e.target.innerHTML;
+    hangMan.makeGuess(guess)
+hangMan.changeMan(guess)
+render();
+}) 
+const l=document.getElementById('l');
+l.addEventListener('click',function(e){
+if(hangMan.status !== 'playing') return;
+
+    const guess=e.target.innerHTML;
+    hangMan.makeGuess(guess)
+hangMan.changeMan(guess)
+render();
+}) 
+const m=document.getElementById('m');
+m.addEventListener('click',function(e){
+if(hangMan.status !== 'playing') return;
+
+    const guess=e.target.innerHTML;
+    hangMan.makeGuess(guess)
+hangMan.changeMan(guess)
+render();
+}) 
+const n=document.getElementById('n');
+n.addEventListener('click',function(e){
+if(hangMan.status !== 'playing') return;
+
+    const guess=e.target.innerHTML;
+    hangMan.makeGuess(guess)
+hangMan.changeMan(guess)
+render();
+}) 
+const o=document.getElementById('o');
+o.addEventListener('click',function(e){
+if(hangMan.status !== 'playing') return;
+
+    const guess=e.target.innerHTML;
+    hangMan.makeGuess(guess)
+hangMan.changeMan(guess)
+render();
+}) 
+const p=document.getElementById('p');
+p.addEventListener('click',function(e){
+if(hangMan.status !== 'playing') return;
+
+    const guess=e.target.innerHTML;
+    hangMan.makeGuess(guess)
+hangMan.changeMan(guess)
+render();
+}) 
+const q=document.getElementById('q');
+q.addEventListener('click',function(e){
+if(hangMan.status !== 'playing') return;
+
+    const guess=e.target.innerHTML;
+    hangMan.makeGuess(guess)
+hangMan.changeMan(guess)
+render();
+}) 
+const r=document.getElementById('r');
+r.addEventListener('click',function(e){
+if(hangMan.status !== 'playing') return;
+
+    const guess=e.target.innerHTML;
+    hangMan.makeGuess(guess)
+hangMan.changeMan(guess)
+render();
+}) 
+const s=document.getElementById('s');
+s.addEventListener('click',function(e){
+if(hangMan.status !== 'playing') return;
+
+    const guess=e.target.innerHTML;
+    hangMan.makeGuess(guess)
+hangMan.changeMan(guess)
+render();
+}) 
+const t=document.getElementById('t');
+t.addEventListener('click',function(e){
+if(hangMan.status !== 'playing') return;
+
+    const guess=e.target.innerHTML;
+    hangMan.makeGuess(guess)
+hangMan.changeMan(guess)
+render();
+}) 
+const u=document.getElementById('u');
+u.addEventListener('click',function(e){
+if(hangMan.status !== 'playing') return;
+
+    const guess=e.target.innerHTML;
+    hangMan.makeGuess(guess)
+hangMan.changeMan(guess)
+render();
+}) 
+const v=document.getElementById('v');
+v.addEventListener('click',function(e){
+if(hangMan.status !== 'playing') return;
+
+    const guess=e.target.innerHTML;
+    hangMan.makeGuess(guess)
+hangMan.changeMan(guess)
+render();
+}) 
+const w=document.getElementById('w');
+w.addEventListener('click',function(e){
+if(hangMan.status !== 'playing') return;
+
+    const guess=e.target.innerHTML;
+    hangMan.makeGuess(guess)
+hangMan.changeMan(guess)
+render();
+}) 
+const x=document.getElementById('x');
+x.addEventListener('click',function(e){
+if(hangMan.status !== 'playing') return;
+
+    const guess=e.target.innerHTML;
+    hangMan.makeGuess(guess)
+hangMan.changeMan(guess)
+render();
+}) 
+const y=document.getElementById('y');
+y.addEventListener('click',function(e){
+if(hangMan.status !== 'playing') return;
+
+    const guess=e.target.innerHTML;
+    hangMan.makeGuess(guess)
+hangMan.changeMan(guess)
+render();
+}) 
+const z=document.getElementById('z');
+z.addEventListener('click',function(e){
+if(hangMan.status !== 'playing') return;
+
+    const guess=e.target.innerHTML;
+    hangMan.makeGuess(guess)
+hangMan.changeMan(guess)
+render();
+}) 
+
 }
-
-
-
 checkKEY();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 window.addEventListener('keypress', function ({ key }) {
     if (hangMan.status !== 'playing') return;
