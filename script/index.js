@@ -146,7 +146,7 @@ class HangMan {
             const image = document.getElementById('man1');
             let source = image.src;
             console.log(source)//http://localhost:3000/asset/hang0.png
-            image.src = `/asset/nice-job.jpg`;
+            image.src = `/HangMan/asset/nice-job.jpg`;
             return `great work! you guessed the word: ${this.#foundWord}`
         }
     }
