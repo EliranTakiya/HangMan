@@ -35,7 +35,7 @@ app.use(logger);
 
 //routing with sendFile method
  app.get('^/$|/index(.html)?',(req,res)=>{
-    res.sendFile(path.join(__dirname,'page','index.html'));
+    res.sendFile(path.join(__dirname,'index.html'));
  })
 
 //  app.get('^/$|/info(.html)?',(req,res)=>{
