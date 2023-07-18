@@ -191,9 +191,8 @@ function render() {
 
 
 
-
-
-const a=document.getElementById('a');
+function checkKEY(){
+   const a=document.getElementById('a');
 a.addEventListener('click',function(e){
 if(hangMan.status !== 'playing') return;
 
@@ -273,9 +272,12 @@ if(hangMan.status !== 'playing') return;
     hangMan.makeGuess(guess)
 hangMan.changeMan(guess)
 render();
-})
+}) 
+}
 
 
+
+checkKEY();
 
 
 
