@@ -147,6 +147,10 @@ class HangMan {
             let source = image.src;
             console.log(source)//http://localhost:3000/asset/hang0.png
             image.src = `/HangMan/asset/nice-job.jpg`;
+
+            const newHeight=document.getElementById('main');
+            newHeight.style.height='187px';
+            
             return `great work! you guessed the word: ${this.#foundWord}`
         }
     }
