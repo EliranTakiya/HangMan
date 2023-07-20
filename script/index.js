@@ -26,6 +26,9 @@ const words = [
     'queen',
     'king',
 ]
+//words to localStorage
+localStorage.setItem('words', JSON.stringify(words))
+
 const puzzleWord = document.querySelector('#puzzle');
 const myStatus = document.querySelector('#status');
 const guessedLetters = document.querySelector('#guessed-letters');
@@ -45,6 +48,8 @@ class HangMan {
         this.errorMsg = '';
         this.count = 0;
         this.guessed = [];
+        this.score = 0;
+
     }
     getPuzzled() {
         // a method that returns a string that represents the current state of the puzzle.
@@ -159,6 +164,11 @@ class HangMan {
             return `remaining guesses: ${this.#remainingGuesses}`;
         } else if (
             this.status === 'failed') {
+            //score
+                localStorage.removeItem("user_score");
+                let myScore = document.getElementById('score');
+                myScore.innerHTML = ' game over try again!';
+                //score
             return `nice try! the word was ${this.#word}`
         }
         else {
@@ -169,6 +179,12 @@ class HangMan {
 
             const newHeight=document.getElementById('main');
             newHeight.style.height='187px';
+             //score
+            let myScore = document.getElementById('score');
+            myScore.innerHTML = localStorage.getItem('user_score');
+            localStorage.setItem('user_score', Number(myScore.innerHTML) + 1)
+            myScore.innerHTML = localStorage.getItem('user_score')
+            //score
             
             return `great work! you guessed the word: ${this.#foundWord}`
         }
@@ -182,6 +198,11 @@ function randomWord() {
 }
 const word = randomWord();
 const hangMan = new HangMan(word, 7);
+//score
+let myScore=document.getElementById('score');
+myScore.innerHTML=localStorage.getItem('user_score');
+//score
+
 // hangMan.makeGuess('f');
 // console.log(hangMan.getPuzzled())
 // console.log(hangMan.getStatusMessage())
