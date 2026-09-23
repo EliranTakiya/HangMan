@@ -51,6 +51,11 @@ function playWrongSound() {
     playTone(130, 0.22, 'sawtooth', 0.03, 0.1);
 }
 
+function playAlreadyGuessedSound() {
+    playTone(330, 0.08, 'square', 0.025);
+    playTone(260, 0.12, 'square', 0.02, 0.08);
+}
+
 function playWinSound() {
     playTone(523, 0.14, 'sine', 0.045);
     playTone(659, 0.14, 'sine', 0.045, 0.12);
@@ -117,7 +122,7 @@ class HangMan {
         //does letter exist in guessedLetters, if it does then return back,if not then push it to guessedLetters
         if (this.guessedLetters.includes(guess)) {
             this.errorMsg = 'already guessed this letter'
-            this.lastGuessResult = null;
+            this.lastGuessResult = { duplicate: true };
             return
         };
 
@@ -271,6 +276,11 @@ function render() {
     guessedLetters.innerHTML = hangMan.guessedLetters.join(', ');
     errorMsg.innerHTML = hangMan.errorMsg;
     if (!hangMan.lastGuessResult) return;
+    if (hangMan.lastGuessResult.duplicate) {
+        playAlreadyGuessedSound();
+        hangMan.lastGuessResult = null;
+        return;
+    }
     const { correct, status } = hangMan.lastGuessResult;
     if (status === 'finished') {
         playWinSound();
