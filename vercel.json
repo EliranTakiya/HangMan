@@ -1,0 +1,13 @@
+{
+  "functions": {
+    "app.js": {
+      "includeFiles": [
+        "index.html",
+        "index.css",
+        "asset/**",
+        "script/**",
+        "styles/**"
+      ]
+    }
+  }
+}
