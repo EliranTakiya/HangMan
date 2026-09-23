@@ -310,6 +310,7 @@ startGameButton.addEventListener('click', () => {
     document.getElementById('category-label').innerHTML = categoryNames[selectedCategory];
     categoryScreen.style.display = 'none';
     render();
+    document.querySelector('.keyboard-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
 });
 
 
