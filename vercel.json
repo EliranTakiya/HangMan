@@ -1,13 +1,24 @@
 {
-  "functions": {
-    "app.js": {
-      "includeFiles": [
-        "index.html",
-        "index.css",
-        "asset/**",
-        "script/**",
-        "styles/**"
-      ]
+  "version": 2,
+  "builds": [
+    {
+      "src": "app.js",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": [
+          "index.html",
+          "index.css",
+          "asset/**",
+          "script/**",
+          "styles/**"
+        ]
+      }
     }
-  }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "app.js"
+    }
+  ]
 }
