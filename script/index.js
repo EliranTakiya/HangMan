@@ -1,31 +1,18 @@
-const words = [
-    'cat',
-    'pizza',
-    'apple',
-    'truck',
-    'pink',
-    'army',
-    'potato',
-    'soccer',
-    'cheese',
-    'tomato',
-    'student',
-    'funky',
-    'giraffe',
-    'dream',
-    'snow',
-    'round',
-    'bread',
-    'brown',
-    'hotel',
-    'friend',
-    'shock',
-    'door',
-    'navy',
-    'joker',
-    'queen',
-    'king',
-]
+const categories = {
+    animals: ['cat', 'giraffe', 'horse', 'tiger', 'rabbit'],
+    colors: ['pink', 'brown', 'navy', 'green', 'orange'],
+    food: ['pizza', 'apple', 'potato', 'cheese', 'tomato', 'bread'],
+    sports: ['soccer', 'army', 'round', 'jogger', 'tennis'],
+    objects: ['truck', 'hotel', 'friend', 'door', 'joker', 'queen', 'king'],
+};
+const categoryNames = {
+    animals: 'Animals',
+    colors: 'Colors',
+    food: 'Food',
+    sports: 'Sports',
+    objects: 'Objects & places',
+};
+const words = Object.values(categories).flat();
 //words to localStorage
 localStorage.setItem('words', JSON.stringify(words))
 
@@ -49,6 +36,7 @@ class HangMan {
         this.count = 0;
         this.guessed = [];
         this.score = 0;
+        this.scored = false;
 
     }
     getPuzzled() {
@@ -164,11 +152,8 @@ class HangMan {
             return `remaining guesses: ${this.#remainingGuesses}`;
         } else if (
             this.status === 'failed') {
-            //score
-                localStorage.removeItem("user_score");
-                let myScore = document.getElementById('score');
-                myScore.innerHTML = ' game over try again!';
-                //score
+            localStorage.setItem('user_score', '0');
+            document.getElementById('score').innerHTML = '0';
             return `nice try! the word was ${this.#word}`
         }
         else {
@@ -179,12 +164,15 @@ class HangMan {
 
             const newHeight=document.getElementById('main');
             newHeight.style.height='187px';
-             //score
-            let myScore = document.getElementById('score');
-            myScore.innerHTML = localStorage.getItem('user_score');
-            localStorage.setItem('user_score', Number(myScore.innerHTML) + 1)
-            myScore.innerHTML = localStorage.getItem('user_score')
-            //score
+            if (!this.scored) {
+                const currentStreak = Number(localStorage.getItem('user_score') || 0) + 1;
+                const bestStreak = Math.max(currentStreak, Number(localStorage.getItem('best_score') || 0));
+                localStorage.setItem('user_score', String(currentStreak));
+                localStorage.setItem('best_score', String(bestStreak));
+                document.getElementById('score').innerHTML = currentStreak;
+                document.getElementById('best-score').innerHTML = bestStreak;
+                this.scored = true;
+            }
             
             return `great work! you guessed the word: ${this.#foundWord}`
         }
@@ -192,16 +180,19 @@ class HangMan {
 }
 
 
-function randomWord() {
-    let randomIndex = Math.floor(Math.random() * words.length);
-    return words[randomIndex];
+function randomWord(category) {
+    const wordList = categories[category] || words;
+    let randomIndex = Math.floor(Math.random() * wordList.length);
+    return wordList[randomIndex];
 }
-const word = randomWord();
-const hangMan = new HangMan(word, 7);
-//score
-let myScore=document.getElementById('score');
-myScore.innerHTML=localStorage.getItem('user_score');
-//score
+let selectedCategory = localStorage.getItem('selected_category');
+let word = randomWord(selectedCategory);
+let hangMan = new HangMan(word, 7);
+const myScore = document.getElementById('score');
+const bestScore = document.getElementById('best-score');
+myScore.innerHTML = localStorage.getItem('user_score') || '0';
+bestScore.innerHTML = localStorage.getItem('best_score') || '0';
+document.getElementById('category-label').innerHTML = categoryNames[selectedCategory] || 'Choose a category';
 
 // hangMan.makeGuess('f');
 // console.log(hangMan.getPuzzled())
@@ -236,6 +227,29 @@ function render() {
     errorMsg.innerHTML = hangMan.errorMsg;
 
 }
+
+const categoryScreen = document.getElementById('category-screen');
+const startGameButton = document.getElementById('start-game');
+const categoryButtons = document.querySelectorAll('.category-option');
+
+categoryButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+        selectedCategory = button.dataset.category;
+        categoryButtons.forEach((option) => option.classList.remove('selected'));
+        button.classList.add('selected');
+        startGameButton.disabled = false;
+    });
+});
+
+startGameButton.addEventListener('click', () => {
+    if (!selectedCategory) return;
+    localStorage.setItem('selected_category', selectedCategory);
+    word = randomWord(selectedCategory);
+    hangMan = new HangMan(word, 7);
+    document.getElementById('category-label').innerHTML = categoryNames[selectedCategory];
+    categoryScreen.style.display = 'none';
+    render();
+});
 
 
 
