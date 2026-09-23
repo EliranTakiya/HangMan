@@ -1,9 +1,9 @@
 const categories = {
-    animals: ['cat', 'giraffe', 'horse', 'tiger', 'rabbit'],
-    colors: ['pink', 'brown', 'navy', 'green', 'orange'],
-    food: ['pizza', 'apple', 'potato', 'cheese', 'tomato', 'bread'],
-    sports: ['soccer', 'army', 'round', 'jogger', 'tennis'],
-    objects: ['truck', 'hotel', 'friend', 'door', 'joker', 'queen', 'king'],
+    animals: ['cat', 'giraffe', 'horse', 'tiger', 'rabbit', 'lion', 'zebra', 'monkey', 'dolphin', 'eagle', 'panda', 'camel', 'mouse', 'sheep', 'whale'],
+    colors: ['pink', 'brown', 'navy', 'green', 'orange', 'red', 'blue', 'yellow', 'purple', 'white', 'black', 'silver', 'violet', 'teal', 'gold'],
+    food: ['pizza', 'apple', 'potato', 'cheese', 'tomato', 'bread', 'burger', 'salad', 'cookie', 'banana', 'carrot', 'chicken', 'sandwich', 'noodle', 'steak', 'melon'],
+    sports: ['soccer', 'army', 'round', 'jogger', 'tennis', 'football', 'volleyball', 'swimming', 'running', 'cycling', 'skating', 'racing', 'golf', 'rugby', 'surfing'],
+    objects: ['truck', 'hotel', 'friend', 'door', 'joker', 'queen', 'king', 'table', 'chair', 'phone', 'window', 'bottle', 'pencil', 'camera', 'wallet', 'mirror', 'candle'],
 };
 const categoryNames = {
     animals: 'Animals',
@@ -229,8 +229,13 @@ function render() {
 }
 
 const categoryScreen = document.getElementById('category-screen');
+const openCategoryButton = document.getElementById('open-category');
 const startGameButton = document.getElementById('start-game');
 const categoryButtons = document.querySelectorAll('.category-option');
+
+openCategoryButton.addEventListener('click', () => {
+    categoryScreen.style.display = 'grid';
+});
 
 categoryButtons.forEach((button) => {
     button.addEventListener('click', () => {
