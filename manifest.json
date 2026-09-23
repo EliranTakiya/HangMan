@@ -1,0 +1,17 @@
+{
+  "name": "Hangman | Bee Games",
+  "short_name": "Hangman",
+  "description": "A fast and fun word challenge by Bee Games.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#141519",
+  "theme_color": "#141519",
+  "icons": [
+    {
+      "src": "/asset/beeGames.png",
+      "sizes": "676x525",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

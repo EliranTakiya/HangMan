@@ -8,6 +8,7 @@
         "includeFiles": [
           "index.html",
           "index.css",
+          "manifest.json",
           "asset/**",
           "script/**",
           "styles/**"
