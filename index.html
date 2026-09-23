@@ -5,35 +5,66 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-    <link rel="stylesheet" type="text/css" href="/HangMan/styles/index.css">
-    <title>HangMan Game</title>
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/styles/index.css">
+    <title>Hangman | Bee Games</title>
 </head>
 
 <body>
  
-    <header style="display: flex;">
-    <h1>Hangman Game</h1>
-    <p id="instructions">
-        <div style="width: 350px;"></div>
-<img style="height: 75px;padding-top: 20px;" src="/HangMan/asset/beeGames.png" alt="">
-    </header>
-        <strong>Instructions:</strong> Type any
-        letter you want to guess.
-    </p>
-    <p>
-        <strong>Guess the word</strong>
-        <span id="puzzle"></span>
-    </p>
-    <p id="status"></p>
-    <p id="guessed-letters"></p><button onclick="window.location.reload()">Get a new word</button>
-    <p id="error-message" style="color:red"></p><p>your score (current streak):<span id="score"></span></p>
-    
-    <main id="main" style="background-color: antiquewhite; height:339px; margin-bottom:15px;">
-    <div class="man" id="man"><img style="padding-top:7px;" id="man1" alt=""></div>
-   </main>
-    
-    <div class="container">
+    <div class="app-shell">
+        <header class="topbar">
+            <a class="brand" href="/" aria-label="Bee Games home">
+                <img src="/asset/beeGames.png" alt="Bee Games">
+                <span>Bee Games</span>
+            </a>
+            <div class="game-label"><span class="live-dot"></span> WORD CHALLENGE <span class="game-number">#01</span></div>
+        </header>
+
+        <section class="intro">
+            <div>
+                <p class="eyebrow">Welcome to the hive</p>
+                <h1>Guess the word.<br><span>Save the day.</span></h1>
+                <p id="instructions">Pick a letter from the keyboard or use your own. Every correct guess brings the hidden word into focus.</p>
+            </div>
+            <div class="score-card">
+                <span class="score-label">CURRENT STREAK</span>
+                <strong id="score">0</strong>
+                <span class="score-caption">words guessed</span>
+            </div>
+        </section>
+
+        <main class="game-layout">
+            <section class="game-panel">
+                <div class="panel-heading">
+                    <div>
+                        <p class="panel-kicker">THE MYSTERY WORD</p>
+                        <p id="theWord"><span id="puzzle"></span></p>
+                    </div>
+                    <button class="new-word" onclick="window.location.reload()" type="button"><span>↻</span> New word</button>
+                </div>
+                <div class="game-scene" id="main">
+                    <div class="scene-glow"></div>
+                    <div class="man" id="man"><img id="man1" src="/asset/hang0.png" alt="Hangman illustration"></div>
+                </div>
+                <div class="status-row">
+                    <p id="status">Remaining guesses: 7</p>
+                    <p id="guessed-letters" aria-label="Guessed letters"></p>
+                </div>
+                <p id="error-message" role="alert"></p>
+            </section>
+
+            <section class="keyboard-panel">
+                <div class="keyboard-heading">
+                    <div>
+                        <p class="panel-kicker">MAKE YOUR MOVE</p>
+                        <h2>Choose a letter</h2>
+                    </div>
+                    <span class="keyboard-hint">A — Z</span>
+                </div>
+                <div class="container">
         <div class="row one">
             <button id="a">a</button>
             <button id="b">b</button>
@@ -64,10 +95,15 @@
             <button id="y">y</button>
             <button id="z">z</button>
         </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p id="copyrights">Made with focus by <strong>Bee Games</strong> <span>&copy;</span> 2026</p>
+            <span class="footer-mark">KEEP PLAYING <span>✦</span></span>
+        </footer>
     </div>
-    <footer style="background-color: blueviolet;">
-        <p id="copyrights">created by Bee Games. <span>&copy;</span> 2023</p>
-    </footer>
 </body>
 <!-- <script>
     const words = [
@@ -244,5 +280,5 @@
 
 </script> -->
 
-<script src="/HangMan/script/index.js"></script>
+<script src="/script/index.js"></script>
 </html>
