@@ -132,7 +132,7 @@ class HangMan {
             const image = document.getElementById('man1');
             let source = image.src;
             console.log(source)//http://localhost:3000/asset/hang0.png
-            image.src = `/HangMan/asset/hang${this.count}.png`;
+            image.src = `/asset/hang${this.count}.png`;
             this.count++;
             this.guessed.push(guess)
             return
@@ -175,7 +175,7 @@ class HangMan {
             const image = document.getElementById('man1');
             let source = image.src;
             console.log(source)//http://localhost:3000/asset/hang0.png
-            image.src = `/HangMan/asset/nice-job.jpg`;
+            image.src = `/asset/nice-job.jpg`;
 
             const newHeight=document.getElementById('main');
             newHeight.style.height='187px';
