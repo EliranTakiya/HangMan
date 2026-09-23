@@ -21,6 +21,47 @@ const myStatus = document.querySelector('#status');
 const guessedLetters = document.querySelector('#guessed-letters');
 const errorMsg = document.querySelector('#error-message');
 
+let audioContext;
+
+function playTone(frequency, duration, type = 'sine', volume = 0.05, delay = 0) {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContext) return;
+    audioContext ||= new AudioContext();
+    if (audioContext.state === 'suspended') audioContext.resume();
+    const oscillator = audioContext.createOscillator();
+    const gain = audioContext.createGain();
+    const startTime = audioContext.currentTime + delay;
+    oscillator.type = type;
+    oscillator.frequency.setValueAtTime(frequency, startTime);
+    gain.gain.setValueAtTime(volume, startTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+    oscillator.connect(gain);
+    gain.connect(audioContext.destination);
+    oscillator.start(startTime);
+    oscillator.stop(startTime + duration);
+}
+
+function playCorrectSound() {
+    playTone(660, 0.1, 'sine', 0.045);
+    playTone(880, 0.16, 'sine', 0.035, 0.08);
+}
+
+function playWrongSound() {
+    playTone(180, 0.18, 'sawtooth', 0.035);
+    playTone(130, 0.22, 'sawtooth', 0.03, 0.1);
+}
+
+function playWinSound() {
+    playTone(523, 0.14, 'sine', 0.045);
+    playTone(659, 0.14, 'sine', 0.045, 0.12);
+    playTone(784, 0.24, 'sine', 0.05, 0.24);
+}
+
+function playLoseSound() {
+    playTone(220, 0.2, 'triangle', 0.04);
+    playTone(165, 0.3, 'triangle', 0.035, 0.16);
+}
+
 class HangMan {
     #word
     #remainingGuesses
@@ -37,6 +78,7 @@ class HangMan {
         this.guessed = [];
         this.score = 0;
         this.scored = false;
+        this.lastGuessResult = null;
 
     }
     getPuzzled() {
@@ -69,11 +111,13 @@ class HangMan {
         //check with regex if the letter matches the pattern of lowercase letters and a-z
         if (!guess.match(/^[a-z]$/)) {
             this.errorMsg = 'guess must be lowercase letters'
+            this.lastGuessResult = null;
             return
         };
         //does letter exist in guessedLetters, if it does then return back,if not then push it to guessedLetters
         if (this.guessedLetters.includes(guess)) {
             this.errorMsg = 'already guessed this letter'
+            this.lastGuessResult = null;
             return
         };
 
@@ -96,6 +140,7 @@ class HangMan {
         }
         this.calculateStatus();
         this.errorMsg = '';
+        this.lastGuessResult = { correct, status: this.status };
     }
 
     changeMan(guess) {
@@ -225,7 +270,18 @@ function render() {
     myStatus.innerHTML = hangMan.getStatusMessage();
     guessedLetters.innerHTML = hangMan.guessedLetters.join(', ');
     errorMsg.innerHTML = hangMan.errorMsg;
-
+    if (!hangMan.lastGuessResult) return;
+    const { correct, status } = hangMan.lastGuessResult;
+    if (status === 'finished') {
+        playWinSound();
+    } else if (status === 'failed') {
+        playLoseSound();
+    } else if (correct) {
+        playCorrectSound();
+    } else {
+        playWrongSound();
+    }
+    hangMan.lastGuessResult = null;
 }
 
 const categoryScreen = document.getElementById('category-screen');
